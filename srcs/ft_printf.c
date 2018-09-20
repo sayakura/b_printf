@@ -112,11 +112,11 @@ int		b_printf(const char *restrict format, ...)
 {
 	va_list	args;
 	size_t	index;
-	char	buffer[10000];
+	char	buffer[1000000];
 
 	index = 0;
 	va_start(args, format);
-	while (index < 10000)
+	while (index < 1000000)
 		buffer[index++] = '\0';
 	index = -1;
 	while (format[++index] != '\0')
