@@ -6,11 +6,10 @@
 /*   By: qpeng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 23:42:10 by qpeng             #+#    #+#             */
-/*   Updated: 2018/09/19 17:33:21 by qpeng            ###   ########.fr       */
+/*   Updated: 2018/09/20 02:17:54 by qpeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libs.h"
 #include "ft_headers.h"
 
 const char *g_ubase = "0123456789ABCDEF";
@@ -73,7 +72,7 @@ char	*ft_lltoa(long long num, int base, signed char isupper)
 									g_lbase[ABS(num % base)];
 	while (num /= base)
 		res[--size] = (isupper == 1) ? g_ubase[ABS(num % base)] :\
-									g_lbase[ABS(num % base)];\
+									g_lbase[ABS(num % base)];
 	if (base == 10 && neg == 1)
 		res[--size] = '-';
 	return (res);
