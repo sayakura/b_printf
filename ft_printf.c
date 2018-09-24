@@ -100,11 +100,8 @@ void	ft_putargs(unsigned char sym, va_list args, char *buffer)
 		ft_putbuffer(buffer, -1, ft_lltoa(va_arg(args, unsigned int), 10, 0));
 	else if (sym == 'x')
 		ft_putbuffer(buffer, -1, ft_lltoa(va_arg(args, unsigned int), 16, 0));
-	else
-	{
+	else if (sym == '%')
 		ft_putbuffer(buffer, '%', 0);
-		ft_putbuffer(buffer, sym, 0);
-	}
 }
 
 int		b_printf(const char *restrict format, ...)
@@ -124,11 +121,12 @@ int		b_printf(const char *restrict format, ...)
 			ft_putbuffer(buffer, format[index], 0);
 		else
 		{
-			if (format[index + 1] != '\0' && format[index + 1] != ' ')
-				ft_putargs(format[++index], args, buffer);
+			while (format[++index] == ' ')
+					;
+			if (format[index] =='\0')
+				break ;
 			else
-				while (format[index + 1] == ' ')
-					index++;
+				ft_putargs(format[index], args, buffer);	
 		}
 	}
 	write(1, buffer, ft_strlen(buffer));

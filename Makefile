@@ -6,7 +6,7 @@
 #    By: qpeng <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/18 23:44:47 by qpeng             #+#    #+#              #
-#    Updated: 2018/09/19 17:40:40 by qpeng            ###   ########.fr        #
+#    Updated: 2018/09/24 00:31:02 by qpeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,36 +14,27 @@ NAME = libftprintf.a
 
 FLAGS =  -Wall -Werror -Wextra 
 
-CFLAGS = -c -Wall -Werror -Wextra 
+SRC = ft_*.c
 
-SRCSDIR = srcs
-
-CFILES = ft_*.c
-
-HEADER = -I./includes
-
-SRCS = $(addprefix $(SRCSDIR)/, $(CFILES))
-
-OBJS = $(SRCS:.c=.o)
-
-OBJSDIR = objects
+OBJS = $(SRC:.c=.o)
 
 all: $(NAME) 
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) ./$(OBJSDIR)/*.o
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@echo "\033[0;32m ✓ Created $(NAME)"
 
-$(OBJS): 
-	mkdir $(OBJSDIR)
-	gcc $(CFLAGS) $(HEADER) $(SRCS)
-	mv *.o $(OBJSDIR)
+$(OBJS): $(CFILES) 
+	@gcc $(FLAGS) -c $(SRC)
 
 clean:
-	/bin/rm -rf $(OBJSDIR)
+	@/bin/rm -rf *.o
+	@echo "\033[0;34m ✓ Object files Removed"
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\033[0;31m ✓ Removed $(NAME)"
 
 re: fclean all
 
