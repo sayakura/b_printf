@@ -6,7 +6,7 @@
 /*   By: qpeng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 23:42:10 by qpeng             #+#    #+#             */
-/*   Updated: 2018/09/20 02:17:54 by qpeng            ###   ########.fr       */
+/*   Updated: 2018/09/24 18:23:29 by qpeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,13 @@ int		b_printf(const char *restrict format, ...)
 		else
 		{
 			while (format[++index] == ' ')
-					;
-			if (format[index] =='\0')
+				;
+			if (format[index] == '\0')
 				break ;
 			else
-				ft_putargs(format[index], args, buffer);	
+				ft_putargs(format[index], args, buffer);
 		}
 	}
-	write(1, buffer, ft_strlen(buffer));
 	va_end(args);
-	return (ft_strlen(buffer));
+	return (write(1, buffer, ft_strlen(buffer)));
 }
